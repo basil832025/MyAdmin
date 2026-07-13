@@ -239,10 +239,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 {{-- Header --}}
 @include('partials.header')
 
-<main class="container mx-auto mt-4 ">
-    <x-menu-drawer event="open-mobile-menu" />
-    @yield('content')
-</main>
+<x-menu-drawer event="open-mobile-menu" />
+
+@if (trim($__env->yieldContent('full_width')) === 'true')
+    <main>
+        @yield('content')
+    </main>
+@else
+    <main class="container mx-auto mt-4">
+        @yield('content')
+    </main>
+@endif
 
 {{-- Footer --}}
 @include('partials.footer')

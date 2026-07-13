@@ -216,6 +216,17 @@ Route::middleware(['web'])->group(function () {
 Route::get('/feedbacks', [ReviewController::class, 'index'])->name('reviews.index');
 Route::post('/feedbacks', [ReviewController::class, 'store'])->name('reviews.store');
 
+Route::get('/oplata-chastynamy-pryvatbank', function () {
+    $page = Pages::query()
+        ->where('slug', 'oplata-chastynamy-pryvatbank')
+        ->firstOrFail();
+
+    return view('pages.privatbank-installments', compact('page'));
+})
+    ->name('privatbank.installments')
+    ->defaults('page_cache_candidate', true)
+    ->withoutMiddleware([VerifyCsrfToken::class]);
+
 Route::get('/{categorySlug}/{itemSlug}', function () {
     $categorySlug = (string) request()->route('categorySlug');
     $itemSlug = (string) request()->route('itemSlug');
