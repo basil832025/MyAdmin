@@ -26,7 +26,7 @@ class FavoriteController extends Controller
                 'slug'  => 'favorites',
             ]];
 
-            return view('pages.catalog.category', compact('categorySections', 'page'));
+            return view(front_view('pages.catalog.category'), compact('categorySections', 'page'));
         }
 
         $items = (new ProductCardPresenter($locale, null, true))->collection(
@@ -43,7 +43,7 @@ class FavoriteController extends Controller
             'slug'  => 'favorites',
         ]];
         $favoriteIds = $ids; // <<< ВАЖНО
-        return view('pages.catalog.category', compact('categorySections', 'favoriteIds', 'page'));
+        return view(front_view('pages.catalog.category'), compact('categorySections', 'favoriteIds', 'page'));
     }
 
 

@@ -41,7 +41,7 @@ class OrderNotificationMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.order-notification',
+            markdown: front_view('emails.order-notification'),
         );
     }
 

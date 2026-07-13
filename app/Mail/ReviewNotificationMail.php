@@ -38,7 +38,7 @@ class ReviewNotificationMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.review-notification',
+            markdown: front_view('emails.review-notification'),
         );
     }
 }

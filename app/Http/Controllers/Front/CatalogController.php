@@ -60,7 +60,7 @@ class CatalogController extends Controller
             // границы цен для виртуального слага (по хитам/новинкам)
             [$priceMin, $priceMax] = $this->getPriceBounds($slug);
             $filterCharacteristicGroups = $this->getFilterCharacteristics();
-            return view('pages.catalog.category', [
+            return view(front_view('pages.catalog.category'), [
                 'categorySections' => $categorySections,
                 'favoriteIds'      => $ids,       // чтобы вьюхе было одинаково
                 'priceMin'         => $priceMin,
@@ -152,7 +152,7 @@ class CatalogController extends Controller
             [$priceMin, $priceMax] = $this->getPriceBounds($slug, $sectionSlugs);
             $filterCharacteristicGroups = $this->getFilterCharacteristics($sectionSlugs);
 
-            return view('pages.catalog.category', [
+            return view(front_view('pages.catalog.category'), [
                 'categorySections' => [],
                 'items' => $items,
                 'favoriteIds' => $ids,
@@ -218,7 +218,7 @@ class CatalogController extends Controller
         [$priceMin, $priceMax] = $this->getPriceBounds($slug, $sectionSlugs);
         $filterCharacteristicGroups = $this->getFilterCharacteristics($sectionSlugs);
       //  dd($filterCharacteristicGroups);
-        return view('pages.catalog.category', [
+        return view(front_view('pages.catalog.category'), [
             'categorySections' => $categorySections,
             'favoriteIds'      => $favoriteIds,
             'priceMin'         => $priceMin,
@@ -259,7 +259,7 @@ class CatalogController extends Controller
             [$priceMin, $priceMax] = $this->getPriceBounds('all', $menuSlugs);
             $filterCharacteristicGroups = $this->getFilterCharacteristics($menuSlugs);
 
-            return view('pages.filter', [
+            return view(front_view('pages.filter'), [
                 'title'   => function_exists('st') ? st('filter.title', 'Результати фільтру') : __('Результати фільтру'),
                 'items'   => collect(),
                 'filters' => $request->all(),
@@ -276,7 +276,7 @@ class CatalogController extends Controller
         [$priceMin, $priceMax] = $this->getPriceBounds('all', $menuSlugs);
         $filterCharacteristicGroups = $this->getFilterCharacteristics($menuSlugs);
 
-        return view('pages.filter', [
+        return view(front_view('pages.filter'), [
             'title'   => function_exists('st') ? st('filter.title', 'Результати фільтру') : __('Результати фільтру'),
             'items'   => $cards,
             'filters' => $request->all(),

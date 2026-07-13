@@ -9,7 +9,7 @@ class ValidatePaginationPage
 {
     private function reject()
     {
-        return response()->view('errors.lightweight-404', [], 404);
+        return response()->view(front_view('errors.lightweight-404'), [], 404);
     }
 
     public function handle(Request $request, Closure $next)

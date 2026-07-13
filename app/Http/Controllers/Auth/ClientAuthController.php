@@ -40,7 +40,7 @@ class ClientAuthController extends Controller
             $request->session()->put('auth.redirect_to_checkout', $checkoutUrl);
         }
 
-        return view('auth.phone-sms');
+        return view(front_view('auth.phone-sms'));
     }
 
     /**

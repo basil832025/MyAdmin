@@ -37,14 +37,14 @@ class ClientAddressController extends Controller
             ->orderByDesc('id')
             ->get();
 
-        return view('pages.profile.addresses.index', [
+        return view(front_view('pages.profile.addresses.index'), [
             'addresses' => $addresses,
         ]);
     }
 
     public function create()
     {
-        return view('pages.profile.addresses.form', [
+        return view(front_view('pages.profile.addresses.form'), [
             'address' => new ClientAddress(),
         ]);
     }
@@ -90,7 +90,7 @@ class ClientAddressController extends Controller
     {
         $address = $this->findUserAddress($request);
 
-        return view('pages.profile.addresses.form', [
+        return view(front_view('pages.profile.addresses.form'), [
             'address' => $address,
         ]);
     }

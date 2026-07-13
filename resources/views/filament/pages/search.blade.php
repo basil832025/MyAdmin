@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends(front_view('layouts.app'))
 
 @section('content')
     <div class="mx-auto max-w-5xl p-6">

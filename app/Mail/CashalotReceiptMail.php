@@ -34,7 +34,7 @@ class CashalotReceiptMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.cashalot-receipt',
+            markdown: front_view('emails.cashalot-receipt'),
         );
     }
 

@@ -55,6 +55,7 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
+            "app/Support/helpers_front.php",
             "app/Support/helpers_static_pages.php",
             "app/Support/helpers_text.php",
             "app/Support/site_text.php"

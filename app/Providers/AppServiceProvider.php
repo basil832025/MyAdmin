@@ -6,6 +6,7 @@ use App\Filament\Auth\LoginResponse as FilamentLoginResponse;
 use App\Listeners\SyncFavoritesOnLogin;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Shop\ClientAddress;
 use App\Observers\ClientAddressObserver;
@@ -51,6 +52,7 @@ class AppServiceProvider extends ServiceProvider
         KitchenTicket::observe(KitchenTicketObserver::class);
         // один аккуратный вызов
         FrontView::register();
+        Blade::anonymousComponentPath(resource_path('views/front/' . config('project.theme', '3piroga') . '/components'));
         Event::listen(Login::class, [SyncFavoritesOnLogin::class, 'handle']);
 
     }

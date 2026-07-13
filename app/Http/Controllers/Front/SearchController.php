@@ -32,7 +32,7 @@ class SearchController extends Controller
         }
 
         if ($q === '') {
-            return view('pages.search.index', [
+            return view(front_view('pages.search.index'), [
                 'q'          => $q,
                 'products'   => collect(),
                 'categories' => collect(),
@@ -93,7 +93,7 @@ class SearchController extends Controller
             ->limit(20)
             ->get();
 
-        return view('pages.search.index', compact('q','products','categories','favoriteIds'));
+        return view(front_view('pages.search.index'), compact('q','products','categories','favoriteIds'));
     }
 
     /** AJAX-подсказки для хедера */

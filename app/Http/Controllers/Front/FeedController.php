@@ -71,7 +71,7 @@ class FeedController extends Controller
         });
 
         return response()
-            ->view('feeds.esputnik-products', [
+            ->view(front_view('feeds.esputnik-products'), [
                 'items' => $items,
                 'feedTitle' => config('app.name', 'MyAdmin') . ' - eSputnik Products',
                 'feedLink' => url('/'),

@@ -29,7 +29,7 @@ class ProductController extends Controller
 
         // Invalid/out-of-range page should show our 404 page.
         if ($reviews->currentPage() > $reviews->lastPage() && $reviews->currentPage() > 1) {
-            return response()->view('404', [], 404);
+            return response()->view(front_view('404'), [], 404);
         }
 
         // Агрегаты за 1 запрос
@@ -58,6 +58,6 @@ class ProductController extends Controller
         $bonusPercent = ($rule && $rule->is_enabled) ? (int)$rule->earn_percent : 0;
         $minOrderSumForEarn = ($rule && $rule->is_enabled) ? (float)$rule->min_order_sum_for_earn : 0;
 
-        return view('pages.catalog.product', compact('product', 'category', 'related','reviews','stats', 'bonusPercent', 'minOrderSumForEarn'));
+        return view(front_view('pages.catalog.product'), compact('product', 'category', 'related','reviews','stats', 'bonusPercent', 'minOrderSumForEarn'));
     }
 }

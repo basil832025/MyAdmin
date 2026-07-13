@@ -218,7 +218,7 @@ class HomeController extends Controller
             ->where('slug', 'home_blog')
             ->first();
 
-        return app(SiteTemplateRenderer::class)->render('home', 'home', [
+        return app(SiteTemplateRenderer::class)->render('home', front_view('home'), [
             'banners'          => $banners,
             'promo'            => $promo,
             'hits'             => $hits,

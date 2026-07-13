@@ -34,14 +34,14 @@ class BlogController extends Controller
 
         // Protect from huge/invalid ?page=... values that can break pagination rendering.
         if ($posts->currentPage() > $posts->lastPage() && $posts->currentPage() > 1) {
-            return response()->view('404', [], 404);
+            return response()->view(front_view('404'), [], 404);
         }
       //  dd($posts);
         // SEO (при необходимости)
         $title = $category->name ?? 'Блог';
        // dd($title,$category);
 
-        return app(SiteTemplateRenderer::class)->render('pages.blog.index', 'pages.blog.index', compact('category', 'posts', 'title', 'slug'));
+        return app(SiteTemplateRenderer::class)->render('pages.blog.index', front_view('pages.blog.index'), compact('category', 'posts', 'title', 'slug'));
     }
     public function show(string $slug)
     {
@@ -65,7 +65,7 @@ class BlogController extends Controller
 
         $title = $post->title;
 
-        return app(SiteTemplateRenderer::class)->render('pages.blog.show', 'pages.blog.show', compact('post', 'date',  'title'));
+        return app(SiteTemplateRenderer::class)->render('pages.blog.show', front_view('pages.blog.show'), compact('post', 'date',  'title'));
     }
     public function showInCategory(string $categorySlug, string $postSlug)
     {
@@ -89,10 +89,10 @@ class BlogController extends Controller
             ->withQueryString();
 
         if ($comments->currentPage() > $comments->lastPage() && $comments->currentPage() > 1) {
-            return response()->view('404', [], 404);
+            return response()->view(front_view('404'), [], 404);
         }
       //   dd($comments);
-        return app(SiteTemplateRenderer::class)->render('pages.blog.show', 'pages.blog.show', [
+        return app(SiteTemplateRenderer::class)->render('pages.blog.show', front_view('pages.blog.show'), [
             'post'   => $post,
             'title'  => $title,
             'comments'  => $comments,

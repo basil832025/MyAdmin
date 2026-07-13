@@ -117,7 +117,7 @@ Route::get('/favorites/info', [FavoriteController::class, 'info'])
 
 Route::middleware(['web', 'auth'])->group(function () {
     Route::get('/profile', function () {
-        return view('pages.profile.index', [
+        return view(front_view('pages.profile.index'), [
             'user' => auth()->user(),
         ]);
     })->name('profile.index');
@@ -139,11 +139,11 @@ Route::middleware(['web', 'auth'])->group(function () {
         ->name('profile.addresses.update-coords');
 
     Route::get('/profile/bonus', function () {
-        return view('pages.profile.bonuses.index');
+        return view(front_view('pages.profile.bonuses.index'));
     })->name('profile.bonuses.index');
 
     Route::get('/profile/orders', function () {
-        return view('pages.profile.orders.index');
+        return view(front_view('pages.profile.orders.index'));
     })->name('profile.orders.index');
 
     Route::get('/profile/orders/{order}', function () {
@@ -161,7 +161,7 @@ Route::middleware(['web', 'auth'])->group(function () {
             abort(403, 'Order not found or access denied');
         }
 
-        return view('pages.profile.orders.show', compact('order'));
+        return view(front_view('pages.profile.orders.show'), compact('order'));
     })->name('profile.orders.show');
 
     Route::post('/profile/orders/{order}/repeat', [\App\Http\Controllers\Front\OrderController::class, 'repeat'])
@@ -227,7 +227,7 @@ Route::get('/{categorySlug}/{itemSlug}', function () {
 
     $category = ProductCategory::query()->where('slug', $categorySlug)->first();
     if (! $category) {
-        return response()->view('404', [], 404);
+        return response()->view(front_view('404'), [], 404);
     }
 
     $product = Product::query()
@@ -239,7 +239,7 @@ Route::get('/{categorySlug}/{itemSlug}', function () {
         return app(ProductController::class)->show($categorySlug, $itemSlug);
     }
 
-    return response()->view('404', [], 404);
+    return response()->view(front_view('404'), [], 404);
 })
     ->where([
         'categorySlug' => '^(?!ru$|en$)[A-Za-z0-9\-_]+$',
@@ -277,7 +277,7 @@ Route::get('/{slug}', function () {
         return app(BlogController::class)->index($slug);
     }
 
-    return response()->view('404', [], 404);
+    return response()->view(front_view('404'), [], 404);
 })->where('slug', '^(?!ru$|en$)[A-Za-z0-9\-_]+$');
 
 Route::post('/products/{product}/reviews', [ProductReviewController::class, 'store'])
@@ -289,7 +289,7 @@ Route::post('/blog/comments', [BlogController::class, 'storeComment'])
     ->middleware('throttle:5,1');
 
 Route::fallback(function () {
-    return response()->view('404', [], 404);
+    return response()->view(front_view('404'), [], 404);
 });
 };
 

@@ -15,6 +15,6 @@ public function index()
     $info   = $this->cart->info();
     $totals = ['qty' => (int)$info['qty'], 'total_price' => (float)$info['total_price']];
 
-    return view('cart.index', compact('items', 'totals'));
+    return view(front_view('cart.index'), compact('items', 'totals'));
 }
 }

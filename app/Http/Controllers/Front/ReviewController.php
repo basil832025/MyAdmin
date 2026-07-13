@@ -27,7 +27,7 @@ class ReviewController extends Controller
 
         // Invalid/out-of-range page should show our 404 page.
         if ($reviews->currentPage() > $reviews->lastPage() && $reviews->currentPage() > 1) {
-            return response()->view('404', [], 404);
+            return response()->view(front_view('404'), [], 404);
         }
 
         // агрегаты для шапки (средняя, проценты по звёздам)
@@ -44,7 +44,7 @@ class ReviewController extends Controller
             ')
             ->first();
 
-        return view('pages.reviews', compact('reviews', 'stats','page'));
+        return view(front_view('pages.reviews'), compact('reviews', 'stats','page'));
     }
 
     public function store(Request $request)

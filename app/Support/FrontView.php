@@ -10,6 +10,6 @@ class FrontView
     public static function register(): void
     {
         // вывод телефонов в хидере или в других местах
-        View::composer(['layouts.*', 'partials.*','pages.*','components.*'], HeaderPhonesComposer::class);
+        View::composer(['layouts.*', 'partials.*', 'pages.*', 'components.*', 'front.*.layouts.*', 'front.*.partials.*', 'front.*.pages.*', 'front.*.components.*'], HeaderPhonesComposer::class);
     }
 }

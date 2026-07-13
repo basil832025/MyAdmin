@@ -210,7 +210,7 @@ public function index()
         ? $this->availablePaypartsBanksForCheckout($client, $paypartsCheckoutTotal)
         : collect();
     $paypartsEnabled = $paypartsAllowed && $paypartsBanks->isNotEmpty();
-    return view('checkout.index', [
+    return view(front_view('checkout.index'), [
         'items'     => $items,
         'totals'    => $totals,
         'locations' => $locations,
@@ -241,7 +241,7 @@ public function paypartsOptions(Request $request)
 
     return response()->json([
         'ok' => true,
-        'html' => view('checkout.partials._payment-methods', [
+        'html' => view(front_view('checkout.partials._payment-methods'), [
             'sessionData' => $sessionData,
             'paymentMethod' => $request->input('payment_method', $sessionData['payment_method'] ?? 'liqpay'),
             'paypartsBanks' => $paypartsBanks,
@@ -1449,7 +1449,7 @@ public function success($localeOrOrder, ?Order $order = null)
   //  $info   = $this->cart->info();
 
    // dd($items);
-    return view('checkout.success', compact('order', 'items', 'isWorkingHours', 'orderNumber'));
+    return view(front_view('checkout.success'), compact('order', 'items', 'isWorkingHours', 'orderNumber'));
 }
 
 /**
@@ -1662,7 +1662,7 @@ public function payLiqPay($localeOrOrder, ?Order $order = null)
     $liqpayLocale = in_array($effectiveLocale, ['uk', 'ru', 'en'], true) ? $effectiveLocale : 'uk';
     $liqpayForm = LiqPayService::make()->formForOrder($order, $liqpayLocale);
 
-    return view('checkout.liqpay', [
+    return view(front_view('checkout.liqpay'), [
         'order'     => $order,
         'clientEmail' => $clientEmail,
         'emailRequired' => $emailRequired,
@@ -1777,7 +1777,7 @@ public function payPayparts(Request $request, $localeOrOrder, ?Order $order = nu
         }
     }
 
-    return view('checkout.payparts', [
+    return view(front_view('checkout.payparts'), [
         'order' => $order,
         'bank' => $bank,
         'transaction' => $transaction,

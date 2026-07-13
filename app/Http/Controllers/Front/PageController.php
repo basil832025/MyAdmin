@@ -15,14 +15,16 @@ class PageController extends Controller
     public function show(Pages $page)
     {
         // Пытаемся отрендерить спец-шаблон по слагу, если он есть
-        $view = 'pages.' . $page->slug;   // например resources/views/pages/delivery.blade.php
+        $view = front_view('pages.' . $page->slug);   // например resources/views/front/{theme}/pages/delivery.blade.php
 
         if (view()->exists($view)) {
             return app(SiteTemplateRenderer::class)->render($view, $view, compact('page'));
         }
 
         // Фолбэк – общий шаблон для всех статических страниц
-        return app(SiteTemplateRenderer::class)->render('pages.show', 'pages.show', compact('page')); // resources/views/pages/show.blade.php
+        $fallbackView = front_view('pages.show');
+
+        return app(SiteTemplateRenderer::class)->render($fallbackView, $fallbackView, compact('page')); // resources/views/front/{theme}/pages/show.blade.php
     }
 
     /**

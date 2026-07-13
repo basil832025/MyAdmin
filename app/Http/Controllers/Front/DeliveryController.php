@@ -11,6 +11,6 @@ class DeliveryController
 {
     public function __invoke()
     {
-        return view('delivery');
+        return view(front_view('pages.delivery'));
     }
 }

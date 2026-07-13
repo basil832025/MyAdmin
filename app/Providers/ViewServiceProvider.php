@@ -16,9 +16,13 @@ class ViewServiceProvider extends ServiceProvider
         // Автоматически подсовываем данные в partials.menu
         View::composer([
             'partials.menu',
+            'front.*.partials.menu',
             'partials.footer',
-            'product.filter-panel',      // наш шаблон фильтра
-            'components.menu-drawer',      // наш шаблон фильтра
+            'front.*.partials.footer',
+            'product.filter-panel',
+            'front.*.product.filter-panel',      // наш шаблон фильтра
+            'components.menu-drawer',
+            'front.*.components.menu-drawer',      // наш шаблон фильтра
           ], function ($view) {
             $locale = app()->getLocale();
             $prefix = in_array($locale, ['ru', 'en'], true) ? '/' . $locale : '';

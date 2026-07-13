@@ -57,7 +57,7 @@ public function page()
         ->orderBy('sort');
     $related = (new ProductCardPresenter($locale, null, true))->collection($relatedQuery->get());
 
-    return view('cart.index', [
+    return view(front_view('cart.index'), [
         'items' => $info['items'] ?? [],
         'qty'   => (int)($info['qty'] ?? 0),
         'total' => (float)($info['total'] ?? $info['total_price'] ?? 0),
@@ -79,7 +79,7 @@ public function remove(Request $r)
 public function sidebar()
 {
     $info = $this->cart->info();
-    return view('partials.cart-sidebar', [
+    return view(front_view('partials.cart-sidebar'), [
         'items' => $info['items'] ?? [],
         'qty'   => (int)($info['qty'] ?? 0),
         'total' => (float)($info['total'] ?? $info['total_price'] ?? 0),

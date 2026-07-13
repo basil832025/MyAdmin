@@ -56,7 +56,7 @@ class OrderClientMail extends Mailable
         app()->setLocale($this->mailLocale);
 
         return new Content(
-            markdown: 'emails.order-client',
+            markdown: front_view('emails.order-client'),
         );
     }
 
